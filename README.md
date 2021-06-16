@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+This is the learning project by Hadas Attia and Alon Rubin to see how websockets work and how kahoot is implemented through them.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+------ things we need:
 
-## Available Scripts
 
-In the project directory, you can run:
+------  user system:
 
-### `npm start`
+        sign up
+        login
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+        quiz creation
+        question creation
+        answer (right and wrong) creation
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+        edit - user, questions, answers, quizes
+        delete - user, questions, answers, quizes
 
-### `npm test`
+        user interaction and connection
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+------ data base:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+        user collection
+            id
+            username
+            email
+            password
+            quizes - array of quiz ids that link to quiz collection
+            friends list - array of user ids that link to user collection
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+        quiz collection
+            id
+            array of question ids
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+        question collection
+            id
+            array of 3 wrongAnswers ids
+            rightAnswer id
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+        rightAnswer collection
+            id
+            string of right answer
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+        wrongAnswer collection
+            id
+            string of wrong answer
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+when answering a question we trigger a function that takes the question id, and answer(given by user) id and check if the answer is the correct one for this question. the function then returns true or false.
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+function ifRightAnswer(questionId, answerId) {
+    if (question.rightAnswer.id === answer.id) {
+        return true;
+    }
+    return false;
+}
