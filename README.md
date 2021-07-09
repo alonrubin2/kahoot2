@@ -18,7 +18,7 @@ This is the learning project by Hadas Attia and Alon Rubin to see how websockets
         user interaction and connection
 
 
------- data base:
+------  data base:
 
         user collection
             id
@@ -35,6 +35,7 @@ This is the learning project by Hadas Attia and Alon Rubin to see how websockets
 
         question collection
             id
+            string of question
             array of 3 wrongAnswers ids
             rightAnswer id
 
@@ -60,3 +61,9 @@ function ifRightAnswer(questionId, answerId) {
     }
     return false;
 }
+
+
+
+
+
+
