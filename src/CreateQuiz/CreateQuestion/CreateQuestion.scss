@@ -1,0 +1,59 @@
+.CreateQuestion {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-question-form {
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 50%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2em
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 90%;
+    height: 40%;
+}
+
+label {
+    font-size: 20px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+input {
+    width: 90%;
+    margin-left: 10%;
+    height: 40px;
+    font-size: 18px;
+    line-height: 50px;
+    border-radius: 8px;
+    border: none;
+}
+input:active,
+input:focus {
+    outline: none;
+}
+
+.input-group .checkbox {
+    width: 20px;
+    margin-left: 8px;
+}
+
+.inputs {
+    width: 100%;
+    display: flex;
+}
