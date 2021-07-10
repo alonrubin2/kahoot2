@@ -31,6 +31,8 @@ const CreateQuestion = () => {
         setAnswerBody(answerToBeChanged.body = value);
     }
 
+
+    // this function works, but in a delay of one click - why?
     const sortCorrectAnswer = (answer) => {
         let answerToBeChanged = answers[answer];
         setCorrectAnswer(answerToBeChanged.isCorrect = isCorrect)
