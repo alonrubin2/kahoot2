@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './CreateQuestion.scss';
 
 const CreateQuestion = () => {
@@ -6,7 +6,7 @@ const CreateQuestion = () => {
     const [questionValue, setQuestionValue] = useState('');
     const [answerBody, setAnswerBody] = useState('');
     const [isCorrect, setIsCorrect] = useState(false);
-    const [correctAnswer, setCorrectAnswer] = useState(isCorrect)
+    // const [correctAnswer, setCorrectAnswer] = useState(isCorrect)
     const [answers, setAnswers] = useState({
         answer1: {
             body: answerBody,
@@ -35,11 +35,13 @@ const CreateQuestion = () => {
     // this function works, but in a delay of one click - why?
     const sortCorrectAnswer = (answer) => {
         let answerToBeChanged = answers[answer];
-        setCorrectAnswer(answerToBeChanged.isCorrect = isCorrect)
+        answerToBeChanged.isCorrect = isCorrect;
     }
 
-    console.log(answers);
-    // console.log(isCorrect)
+
+    useEffect(() => {
+        setAnswers(answers)
+    }, [answers]);
 
 
 
@@ -61,25 +63,29 @@ const CreateQuestion = () => {
                 <div className="input-group">
                     <label>Answer 1</label>
                     <div className="inputs">
-                    <input type="text"
-                        onChange={(e) => sortAnswers('answer1', e.target.value)}
-                        value={answers.answer1.body} />
-                    <input className="checkbox" type="checkbox" 
-                    onClick={() => {
-                        setIsCorrect(!isCorrect);
-                        sortCorrectAnswer('answer1');
-                    }}
-                    />
+                        <input type="text"
+                            onChange={(e) => sortAnswers('answer1', e.target.value)}
+                            value={answers.answer1.body} />
+                        <input className="checkbox" type="checkbox"
+                            onClick={() => {
+                                setIsCorrect(!isCorrect);
+                                sortCorrectAnswer('answer1');
+                            }}
+                        />
                     </div>
                 </div>
 
                 <div className="input-group">
                     <label>Answers 2</label>
                     <div className="inputs">
-                    <input type="text"
-                        onChange={(e) => sortAnswers('answer2', e.target.value)}
-                        value={answers.answer2.body} />
-                    <input className="checkbox" type="checkbox" />
+                        <input type="text"
+                            onChange={(e) => sortAnswers('answer2', e.target.value)}
+                            value={answers.answer2.body} />
+                        <input className="checkbox" type="checkbox"
+                            onClick={() => {
+                                setIsCorrect(!isCorrect);
+                                sortCorrectAnswer('answer2');
+                            }} />
                     </div>
                 </div>
 
@@ -89,7 +95,11 @@ const CreateQuestion = () => {
                         <input type="text"
                             onChange={(e) => sortAnswers('answer3', e.target.value)}
                             value={answers.answer3.body} />
-                        <input className="checkbox" type="checkbox" />
+                        <input className="checkbox" type="checkbox"
+                            onClick={() => {
+                                setIsCorrect(!isCorrect);
+                                sortCorrectAnswer('answer3');
+                            }} />
                     </div>
 
                 </div>
@@ -97,14 +107,20 @@ const CreateQuestion = () => {
                 <div className="input-group">
                     <label>Answers 4</label>
                     <div className="inputs">
-                    <input type="text"
-                        onChange={(e) => sortAnswers('answer4', e.target.value)}
-                        value={answers.answer4.body} />
-                    <input className="checkbox" type="checkbox" />
+                        <input type="text"
+                            onChange={(e) => sortAnswers('answer4', e.target.value)}
+                            value={answers.answer4.body} />
+                        <input className="checkbox" type="checkbox"
+                            onClick={() => {
+                                setIsCorrect(!isCorrect);
+                                sortCorrectAnswer('answer4');
+                            }} />
                     </div>
                 </div>
 
             </form>
+            {console.log(answers)}
+
         </div>
     );
 
