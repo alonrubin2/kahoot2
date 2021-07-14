@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import environment from '../../environments/index';
 import './CreateQuestion.scss';
 
 const CreateQuestion = () => {
@@ -38,6 +39,28 @@ const CreateQuestion = () => {
         answerToBeChanged.isCorrect = isCorrect;
     }
 
+    async function submit(e) {
+        e.preventDefault();
+        const { answer1, answer2, answer3, answer4 } = answers;
+        // const submitedAnswers = [answer1, answer2, answer3, answer4]
+        const data = {
+            question: questionValue,
+            answers: answers
+        }
+        try {
+            await fetch('http://localhost:4000/question', {
+                method: 'PUT',
+                body: data
+            });
+        }
+        catch (err) {
+            console.log(err)
+        }
+        // console.log(data);
+        // console.log(questionValue);
+        // console.log(answers);
+    }
+
 
     useEffect(() => {
         setAnswers(answers)
@@ -51,7 +74,9 @@ const CreateQuestion = () => {
             <h1>Create Your Question</h1>
 
 
-            <form className="create-question-form">
+            <form className="create-question-form"
+                onSubmit={(e) => submit(e)}
+            >
 
                 <div className="input-group">
                     <label>Question</label>
@@ -118,8 +143,9 @@ const CreateQuestion = () => {
                     </div>
                 </div>
 
+                <button className="btn">Submit</button>
             </form>
-            {console.log(answers)}
+            {/* {console.log(answers)} */}
 
         </div>
     );
