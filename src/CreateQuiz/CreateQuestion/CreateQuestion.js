@@ -8,24 +8,30 @@ const CreateQuestion = () => {
     const [value, setValue] = useState('')
     const [questionValue, setQuestionValue] = useState('');
     const [answerBody, setAnswerBody] = useState('');
-    // const [answers, setAnswers] = useState([
-    //     { body: answerBody, isCorrect: false, id: answerBody.hashCode() },
-    //     { body: answerBody, isCorrect: false, id: answerBody.hashCode() },
-    //     { body: answerBody, isCorrect: false, id: answerBody.hashCode() },
-    //     { body: answerBody, isCorrect: false, id: answerBody.hashCode() },
-    // ]);
+    const [answers, setAnswers] = useState([
+        { body: '', isCorrect: false, id: answerBody.hashCode() },
+        { body: '', isCorrect: false, id: answerBody.hashCode() },
+        { body: '', isCorrect: false, id: answerBody.hashCode() },
+        { body: '', isCorrect: false, id: answerBody.hashCode() },
+    ]);
 
-    const answers = [
-        { body: answerBody, isCorrect: false, id: answerBody.hashCode() },
-        { body: answerBody, isCorrect: false, id: answerBody.hashCode() },
-        { body: answerBody, isCorrect: false, id: answerBody.hashCode() },
-        { body: answerBody, isCorrect: false, id: answerBody.hashCode() },
-    ]
+    // const answers = [
+    //     { body: answerBody, isCorrect: false, id: answerBody.hashCode() },
+    //     { body: answerBody, isCorrect: false, id: answerBody.hashCode() },
+    //     { body: answerBody, isCorrect: false, id: answerBody.hashCode() },
+    //     { body: answerBody, isCorrect: false, id: answerBody.hashCode() },
+    // ]
 
+
+    // const sortAnswers = (i, value) => {
+    //     let answerToBeChanged = answers[i];
+    //     answerToBeChanged.body += value;
+    // }
 
     const sortAnswers = (answer, value) => {
         let answerToBeChanged = answers[answer];
-        setAnswerBody(answerToBeChanged.body = value);
+        setValue(answerToBeChanged.body = value);
+        answerToBeChanged.id = answerToBeChanged.body.hashCode()
     }
 
 
@@ -87,13 +93,13 @@ const CreateQuestion = () => {
                         <label>Answer {index + 1}</label>
                         <div className="inputs">
                             <input type="text"
-                                onChange={(e) => answers[index].body += e.target.value}
+                                onChange={(e) => sortAnswers(index, e.target.value)}
                                 value={answers[index].body}
                                 name={`Answer ${index + 1}`}
                             />
                             <input className="checkbox" type="checkbox"
                                 onClick={() => {
-                                    console.log(`${index + 1} checkesd`);
+                                    sortCorrectAnswer(index);
                                 }}
                             />
                         </div>
