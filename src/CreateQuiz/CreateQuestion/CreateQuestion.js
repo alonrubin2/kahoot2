@@ -36,19 +36,20 @@ const CreateQuestion = () => {
     // this function works, but in a delay of one click - why?
     const sortCorrectAnswer = (answer) => {
         let answerToBeChanged = answers[answer];
-        answerToBeChanged.isCorrect = isCorrect;
+        answerToBeChanged.isCorrect = !isCorrect;
     }
 
     async function submit(e) {
         e.preventDefault();
-        const { answer1, answer2, answer3, answer4 } = answers;
+        // const { answer1, answer2, answer3, answer4 } = answers;
         // const submitedAnswers = [answer1, answer2, answer3, answer4]
         const data = {
             question: questionValue,
             answers: answers
         }
+        console.log(data)
         try {
-            await fetch('http://localhost:4000/question', {
+            await fetch('http://localhost:4000/create-question', {
                 method: 'PUT',
                 body: data
             });
@@ -93,7 +94,6 @@ const CreateQuestion = () => {
                             value={answers.answer1.body} />
                         <input className="checkbox" type="checkbox"
                             onClick={() => {
-                                setIsCorrect(!isCorrect);
                                 sortCorrectAnswer('answer1');
                             }}
                         />
@@ -108,7 +108,6 @@ const CreateQuestion = () => {
                             value={answers.answer2.body} />
                         <input className="checkbox" type="checkbox"
                             onClick={() => {
-                                setIsCorrect(!isCorrect);
                                 sortCorrectAnswer('answer2');
                             }} />
                     </div>
@@ -122,7 +121,6 @@ const CreateQuestion = () => {
                             value={answers.answer3.body} />
                         <input className="checkbox" type="checkbox"
                             onClick={() => {
-                                setIsCorrect(!isCorrect);
                                 sortCorrectAnswer('answer3');
                             }} />
                     </div>
@@ -137,7 +135,6 @@ const CreateQuestion = () => {
                             value={answers.answer4.body} />
                         <input className="checkbox" type="checkbox"
                             onClick={() => {
-                                setIsCorrect(!isCorrect);
                                 sortCorrectAnswer('answer4');
                             }} />
                     </div>
