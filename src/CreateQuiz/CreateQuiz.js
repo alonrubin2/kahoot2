@@ -1,10 +1,11 @@
 import React from 'react';
+import CreateQuestion from './CreateQuestion/CreateQuestion';
 import './CreateQuiz.scss'
 
 const CreateQuiz = () => {
     return (
         <div>
-            CreateQuiz
+            <CreateQuestion />
         </div>
     );
 }

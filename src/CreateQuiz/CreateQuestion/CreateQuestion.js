@@ -1,31 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import environment from '../../environments/index';
 import './CreateQuestion.scss';
+import InputGroup from './InputGroup/InputGroup';
 
 const CreateQuestion = () => {
 
+    const [value, setValue] = useState('')
     const [questionValue, setQuestionValue] = useState('');
     const [answerBody, setAnswerBody] = useState('');
-    const [isCorrect, setIsCorrect] = useState(false);
-    // const [correctAnswer, setCorrectAnswer] = useState(isCorrect)
-    const [answers, setAnswers] = useState({
-        answer1: {
-            body: answerBody,
-            isCorrect: isCorrect
-        },
-        answer2: {
-            body: answerBody,
-            isCorrect: isCorrect
-        },
-        answer3: {
-            body: answerBody,
-            isCorrect: isCorrect
-        },
-        answer4: {
-            body: answerBody,
-            isCorrect: isCorrect
-        },
-    });
+    // const [answers, setAnswers] = useState([
+    //     { body: answerBody, isCorrect: false, id: answerBody.hashCode() },
+    //     { body: answerBody, isCorrect: false, id: answerBody.hashCode() },
+    //     { body: answerBody, isCorrect: false, id: answerBody.hashCode() },
+    //     { body: answerBody, isCorrect: false, id: answerBody.hashCode() },
+    // ]);
+
+    const answers = [
+        { body: answerBody, isCorrect: false, id: answerBody.hashCode() },
+        { body: answerBody, isCorrect: false, id: answerBody.hashCode() },
+        { body: answerBody, isCorrect: false, id: answerBody.hashCode() },
+        { body: answerBody, isCorrect: false, id: answerBody.hashCode() },
+    ]
+
 
     const sortAnswers = (answer, value) => {
         let answerToBeChanged = answers[answer];
@@ -33,10 +29,9 @@ const CreateQuestion = () => {
     }
 
 
-    // this function works, but in a delay of one click - why?
     const sortCorrectAnswer = (answer) => {
         let answerToBeChanged = answers[answer];
-        answerToBeChanged.isCorrect = !isCorrect;
+        answerToBeChanged.isCorrect = !answerToBeChanged.isCorrect;
     }
 
     async function submit(e) {
@@ -63,9 +58,9 @@ const CreateQuestion = () => {
     }
 
 
-    useEffect(() => {
-        setAnswers(answers)
-    }, [answers]);
+    // useEffect(() => {
+    //     setAnswers(answers)
+    // }, [answers]);
 
 
 
@@ -86,6 +81,27 @@ const CreateQuestion = () => {
                         value={questionValue} />
                 </div>
 
+
+                {answers.map((answer, index) => {
+                    return <div className="input-group">
+                        <label>Answer {index + 1}</label>
+                        <div className="inputs">
+                            <input type="text"
+                                onChange={(e) => answers[index].body += e.target.value}
+                                value={answers[index].body}
+                                name={`Answer ${index + 1}`}
+                            />
+                            <input className="checkbox" type="checkbox"
+                                onClick={() => {
+                                    console.log(`${index + 1} checkesd`);
+                                }}
+                            />
+                        </div>
+                    </div>
+                })}
+
+
+                {/* 
                 <div className="input-group">
                     <label>Answer 1</label>
                     <div className="inputs">
@@ -138,9 +154,11 @@ const CreateQuestion = () => {
                                 sortCorrectAnswer('answer4');
                             }} />
                     </div>
-                </div>
+                </div> */}
 
-                <button className="btn">Submit</button>
+                <button className="btn"
+                    onClick={submit}
+                >Submit</button>
             </form>
             {/* {console.log(answers)} */}
 
