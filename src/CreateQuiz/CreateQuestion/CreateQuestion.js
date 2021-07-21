@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import environment from '../../environments/index';
 import './CreateQuestion.scss';
-import InputGroup from './InputGroup/InputGroup';
 
 const CreateQuestion = () => {
 
     const [value, setValue] = useState('')
     const [questionValue, setQuestionValue] = useState('');
-    const [answerBody, setAnswerBody] = useState('');
+    // const [answerBody, setAnswerBody] = useState('');
     const [answers, setAnswers] = useState([
-        { body: '', isCorrect: false, id: answerBody.hashCode() },
-        { body: '', isCorrect: false, id: answerBody.hashCode() },
-        { body: '', isCorrect: false, id: answerBody.hashCode() },
-        { body: '', isCorrect: false, id: answerBody.hashCode() },
+        { body: '', isCorrect: false, id: '' },
+        { body: '', isCorrect: false, id: '' },
+        { body: '', isCorrect: false, id: '' },
+        { body: '', isCorrect: false, id: '' },
     ]);
 
     // const answers = [
@@ -50,10 +49,12 @@ const CreateQuestion = () => {
         }
         console.log(data)
         try {
-            await fetch('http://localhost:4000/create-question', {
+            await fetch(environment.apiUrl + '/create-question', {
                 method: 'PUT',
-                body: data
+                body: data,
+
             });
+
         }
         catch (err) {
             console.log(err)
