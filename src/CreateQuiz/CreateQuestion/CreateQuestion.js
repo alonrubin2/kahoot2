@@ -52,7 +52,6 @@ const CreateQuestion = () => {
             await fetch(environment.apiUrl + '/create-question', {
                 method: 'PUT',
                 body: data,
-
             });
 
         }
