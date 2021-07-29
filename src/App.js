@@ -8,6 +8,7 @@ import {
 import Landing from './Landing';
 import CreateQuiz from './CreateQuiz/CreateQuiz';
 import CreateQuestion from './CreateQuiz/CreateQuestion/CreateQuestion';
+import DesignMock from './designMock/DesignMock';
 
 
 String.prototype.hashCode = function () {
@@ -27,7 +28,7 @@ function App() {
   const history = useHistory();
 
   useEffect(() => {
-    history.push('/landing')
+    history.push('/mock')
   }, []);
 
 
@@ -44,6 +45,9 @@ function App() {
         </Route>
         <Route path="/landing">
           <Landing />
+        </Route>
+        <Route path="/mock">
+          <DesignMock />
         </Route>
 
       </Switch>
