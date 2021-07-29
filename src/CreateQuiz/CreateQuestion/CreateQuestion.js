@@ -49,11 +49,15 @@ const CreateQuestion = () => {
         }
         console.log(data)
         try {
-            await fetch(environment.apiUrl + '/create-question', {
+            const res = await fetch(environment.apiUrl + '/create-question', {
                 method: 'PUT',
-                body: data,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data),
             });
-
+            const result = await res.json();
+            return result;
         }
         catch (err) {
             console.log(err)
