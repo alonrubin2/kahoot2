@@ -1,3 +1,4 @@
+@import "../components/abstract/variables.scss";
 $red: #f03232;
 $yellow: #ebc452;
 $purple: #643ea4;
@@ -49,7 +50,7 @@ header {
 .sidebar {
 	position: absolute;
 	width: 12em;
-	height: 88vh;
+	height: 91%;
 	transition: all 0.2s ease;
 	background-color: $purple;
 
@@ -60,10 +61,11 @@ header {
 		// margin-left: 1em;
 		padding: 0;
 		text-align: start;
-		height: 97%;
+		height: 90%;
 
 		.item {
 			padding: 0.5em;
+			cursor: pointer;
 
 			a {
 				text-decoration: none;

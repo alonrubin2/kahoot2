@@ -18,7 +18,10 @@ const DesignMock = () => {
     }
     // header - 
     //      menu - 
-    //  logout, quiz-creation, quiz-edit, see older quizes, edit-profile, go to profile
+    //          quiz-creation, 
+    //          all quizes - edit quiz, find old quiz
+    //          go to profile - edit profile
+    //          logout, 
     //      logo
     //      search - other users
     // main body - full body [no magin], actual display of current page/component

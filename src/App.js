@@ -9,6 +9,9 @@ import Landing from './Landing';
 import CreateQuiz from './CreateQuiz/CreateQuiz';
 import CreateQuestion from './CreateQuiz/CreateQuestion/CreateQuestion';
 import DesignMock from './designMock/DesignMock';
+import { UserContext } from './contexts/UserContext';
+import Register from './Register/Register';
+
 
 
 String.prototype.hashCode = function () {
@@ -25,33 +28,42 @@ String.prototype.hashCode = function () {
 }
 
 function App() {
+
+  const [user, setUser] = useState({});
+
   const history = useHistory();
 
   useEffect(() => {
-    history.push('/mock')
+    history.push('/register')
   }, []);
 
 
 
   return (
-    <div className="App">
-      <Switch>
+    <UserContext.Provider value={{ user: user, setUser }}>
+      <div className="App">
+        <Switch>
 
-        <Route path="/create-question" >
-          <CreateQuestion />
-        </Route>
-        <Route path="/create-quiz">
-          <CreateQuiz />
-        </Route>
-        <Route path="/landing">
-          <Landing />
-        </Route>
-        <Route path="/mock">
-          <DesignMock />
-        </Route>
+          <Route path="/create-question" >
+            <CreateQuestion />
+          </Route>
+          <Route path="/create-quiz">
+            <CreateQuiz />
+          </Route>
+          <Route path="/landing">
+            <Landing />
+          </Route>
+          <Route path="/mock">
+            <DesignMock />
+          </Route>
+          <Route path="/register">
+            <Register />
+          </Route>
 
-      </Switch>
-    </div>
+        </Switch>
+      </div>
+    </UserContext.Provider >
+
   );
 }
 
