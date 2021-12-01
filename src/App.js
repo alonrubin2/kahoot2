@@ -34,7 +34,7 @@ function App() {
   const history = useHistory();
 
   useEffect(() => {
-    history.push('/register')
+    history.push('/create-question')
   }, []);
 
 
